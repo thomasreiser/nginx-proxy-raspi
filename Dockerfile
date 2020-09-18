@@ -6,13 +6,14 @@ RUN apk update && \
     apk add git
 
 RUN mkdir /build
-ADD . /build/
-
 WORKDIR /build
 
 RUN cd /build && \
     go get -u github.com/ddollar/forego && \
-    ls -lah /build
+    ls -lah /build && \
+    whereis forego && \
+    ls -lah /usr/bin && \
+    ls -lah /usr/local/bin
 
 FROM yobasystems/alpine-nginx:stable-armhf
 LABEL maintainer="reiser.thomas@gmail.com"
