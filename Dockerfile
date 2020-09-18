@@ -10,9 +10,9 @@ ADD . /build/
 
 WORKDIR /build
 
-RUN  go get -u github.com/ddollar/forego
-
-RUN ls -lah
+RUN cd /build && \
+    go get -u github.com/ddollar/forego && \
+    ls -lah /build
 
 FROM yobasystems/alpine-nginx:stable-armhf
 LABEL maintainer="reiser.thomas@gmail.com"
