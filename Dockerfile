@@ -12,7 +12,7 @@ WORKDIR /build
 
 RUN  go get -u github.com/ddollar/forego
 
-
+RUN ls -lah
 
 FROM yobasystems/alpine-nginx:stable-armhf
 LABEL maintainer="reiser.thomas@gmail.com"
