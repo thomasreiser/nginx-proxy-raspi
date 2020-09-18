@@ -1,6 +1,10 @@
 # Compile Forego
 FROM golang:alpine as builder
 
+RUN apt-get update -y && \
+	apt-get install -y \
+	git-core
+
 RUN mkdir /build
 ADD . /build/
 
