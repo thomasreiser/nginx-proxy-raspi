@@ -11,7 +11,7 @@ ENV GOPATH=/build
 
 RUN cd /build && \
     go get -u github.com/ddollar/forego && \
-    ls -lah /build
+    ls -lah /build/bin
 
 FROM yobasystems/alpine-nginx:stable-armhf
 LABEL maintainer="reiser.thomas@gmail.com"
@@ -26,7 +26,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
  && sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf
 
 # Copy Forego
-COPY --from=builder /build/forego /usr/local/bin
+COPY --from=builder /build/bin/forego /usr/local/bin
 RUN chmod u+x /usr/local/bin/forego
 
 ENV DOCKER_GEN_VERSION 0.7.4
