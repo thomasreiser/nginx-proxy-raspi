@@ -3,7 +3,8 @@ FROM golang:alpine as builder
 
 RUN apk update && \
     apk upgrade && \
-    apk add git
+    apk add git && \
+    apk add util-linux
 
 RUN mkdir /build
 WORKDIR /build
