@@ -3,18 +3,15 @@ FROM golang:alpine as builder
 
 RUN apk update && \
     apk upgrade && \
-    apk add git && \
-    apk add util-linux
+    apk add git
 
 RUN mkdir /build
 WORKDIR /build
+ENV GOPATH=/build
 
 RUN cd /build && \
     go get -u github.com/ddollar/forego && \
-    ls -lah /build && \
-    whereis forego && \
-    ls -lah /usr/bin && \
-    ls -lah /usr/local/bin
+    ls -lah /build
 
 FROM yobasystems/alpine-nginx:stable-armhf
 LABEL maintainer="reiser.thomas@gmail.com"
